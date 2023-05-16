@@ -1,6 +1,18 @@
+<script>
+  import globalStore from "../../stores/globalStore";
+  import cart from "../../stores/cart";
+
+  $: total = $cart.reduce((acc, curr) => {
+    return (acc += curr.amount);
+  }, 0);
+</script>
+
 <div class="btn-cart-container">
-  <button class="btn-cart-toggle" on:click={() => console.log("cart items")}>
+  <button
+    class="btn-cart-toggle"
+    on:click={() => globalStore.toggleItem("cart", true)}
+  >
     <i class="fas fa-cart-plus" />
   </button>
-  <span class="btn-cart-items">4</span>
+  <span class="btn-cart-items">{total}</span>
 </div>
