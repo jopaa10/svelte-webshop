@@ -2,7 +2,7 @@
   export let id;
   export let location;
 
-  import products from "../stores/defaultProducts";
+  import products from "../stores/products";
   import Loading from "../components/Loading.svelte";
   import { link } from "svelte-routing";
   import globalStore from "../stores/globalStore";
@@ -12,7 +12,7 @@
 </script>
 
 <svelte:head>
-  <title>{!product ? "single product" : product.title}</title>
+  <title>{!product ? "single product" : product.attributes.title}</title>
 </svelte:head>
 
 {#if !product}
@@ -25,9 +25,9 @@
         <img src={product.image} alt={product.image} />
       </article>
       <article>
-        <h1>{product.title}</h1>
-        <h2>{product.price}</h2>
-        <p>{product.description}</p>
+        <h1>{product.attributes.title}</h1>
+        <h2>{product.attributes.price}</h2>
+        <p>{product.attributes.description}</p>
         <button
           class="btn btn-primary btn-block"
           on:click={() => {
